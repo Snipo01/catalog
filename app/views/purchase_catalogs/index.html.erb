@@ -1,0 +1,41 @@
+<h1>Purchase Catalog</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Product name</th>
+      <th>Price</th>
+      <th>Picture</th>
+      <th>Quantity purchased</th>
+      <th>Place of purchase</th>
+      <th>Location of use</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @purchase_catalogs.each do |purchase_catalog| %>
+      <tr>
+        <td><%= purchase_catalog.product_name %></td>
+        <td>
+          <%= number_to_currency(purchase_catalog.price) %>
+        </td>
+        <td>
+          <%= image_tag(purchase_catalog.picture) %>
+        </td>
+        <td><%= purchase_catalog.quantity_purchased %></td>
+        <td>
+          <%=link_to 'LOCATION', purchase_catalog.place_of_purchase %> 
+        </td>
+        <td><%= purchase_catalog.location_of_use %></td>
+        <td><%= link_to image_tag('eye.png'), purchase_catalog %></td>
+        <td><%= link_to image_tag('12.png'), edit_purchase_catalog_path(purchase_catalog) %></td>
+        <td><%= link_to image_tag('1.png'), purchase_catalog, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Purchase catalog', new_purchase_catalog_path %>
